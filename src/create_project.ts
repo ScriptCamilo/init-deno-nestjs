@@ -42,6 +42,9 @@ export async function createProject(
 
     await dependencies.remove(join(destination, ".git"), { recursive: true });
     await dependencies.run("git", ["init"], { cwd: destination });
+    await dependencies.run("git", ["branch", "-M", "main"], {
+      cwd: destination,
+    });
   } catch (error) {
     if (cloneStarted && await dependencies.exists(destination)) {
       try {

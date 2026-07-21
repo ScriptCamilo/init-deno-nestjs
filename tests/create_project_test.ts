@@ -43,6 +43,14 @@ Deno.test("createProject clones, discards history, and initializes an empty repo
     assert(inside.success);
     assertEquals(new TextDecoder().decode(inside.stdout).trim(), "true");
 
+    const branch = await new Deno.Command("git", {
+      args: ["symbolic-ref", "--short", "HEAD"],
+      cwd: destination,
+      stdout: "piped",
+    }).output();
+    assert(branch.success);
+    assertEquals(new TextDecoder().decode(branch.stdout).trim(), "main");
+
     const log = await new Deno.Command("git", {
       args: ["log", "-1"],
       cwd: destination,

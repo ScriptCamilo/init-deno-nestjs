@@ -36,7 +36,7 @@ deno run --allow-run=git --allow-read --allow-write --allow-net \
 
 - Clones the latest template with `git clone --depth 1`.
 - Removes the template's Git history.
-- Initializes a new, empty Git repository.
+- Initializes a new, empty Git repository on the `main` branch.
 
 ## What it does not do
 
